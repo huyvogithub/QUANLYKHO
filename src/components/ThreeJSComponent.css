@@ -1,0 +1,17 @@
+.container-wrapper {
+    text-align: center;
+  }
+  
+  .three-js-container {
+    box-sizing: border-box;
+    width: 300px;
+    height: 200px;
+    border: 0px solid #ccc;
+    display: inline-block;
+    margin-top: 0px;
+    margin-right: 25%;
+    margin-bottom: 10%;
+    margin-left: 25%;
+  }
+  
+  
