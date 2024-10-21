@@ -46,7 +46,7 @@ function App() {
 
         </div>
         <div className={`user-list-container ${currentPage === 'userList' ? 'visible' : 'hidden'}`}>
-        <Form />
+        <UserList />
         </div>
         <div className={`chartmongo-container ${currentPage === 'userList2' ? 'visible' : 'hidden'}`}>
         <Form />
@@ -69,7 +69,7 @@ function App() {
       <aside className={`side-menu ${isMenuOpen ? 'open' : ''}`}>
         <ul>
           <li onClick={() => handleMenuClick('form')}>NHẬP THÔNG TIN XUẤT NHẬP KHO</li>
-          <li onClick={() => handleMenuClick('userList')}>CHƯA LÀM KỊP</li>
+          <li onClick={() => handleMenuClick('userList')}>LỊCH SỬ NHẬP XUẤT</li>
           <li onClick={() => handleMenuClick('userList2')}>CHƯA LÀM KỊP</li> {/* Thêm mục mới */}
           <li onClick={() => handleMenuClick('PAGE4')}>CHƯA LÀM KỊP</li>
           <li onClick={() => handleMenuClick('CHUNG')}>CHƯA LÀM KỊP</li>
