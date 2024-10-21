@@ -40,34 +40,37 @@ const UserList = () => {
         </button>
       </div>
       {error && <p className="error-text">{error}</p>}
-      <table className="data-table">
-        <thead>
-          <tr>
-            <th>STT</th>
-            <th>Mặt hàng</th>
-            <th>Hành động</th>
-            <th>Số lượng</th>
-            <th>Lý do</th>
-            <th>Người ký</th>
-            <th>Ngày</th>
-          </tr>
-        </thead>
-        <tbody>
-          {userData.map((item, index) => (
-            <tr key={item._id.$oid}>
-              <td>{index + 1}</td>
-              <td>{item.item}</td>
-              <td>{item.action}</td>
-              <td>{item.quantity.$numberDouble}</td>
-              <td>{item.reason}</td>
-              <td>{item.signer}</td>
-              <td>{new Date(item.date).toLocaleString('vi-VN')}</td>
+      <div className="data-table-container"> {/* Khung cuộn ngang */}
+        <table className="data-table">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Mặt hàng</th>
+              <th>Hành động</th>
+              <th>Số lượng</th>
+              <th>Lý do</th>
+              <th>Người ký</th>
+              <th>Ngày</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {userData.map((item, index) => (
+              <tr key={item._id.$oid}>
+                <td>{index + 1}</td>
+                <td>{item.item}</td>
+                <td>{item.action}</td>
+                <td>{item.quantity.$numberDouble}</td>
+                <td>{item.reason}</td>
+                <td>{item.signer}</td>
+                <td>{new Date(item.date).toLocaleString('vi-VN')}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
+  
 };
 
 export default UserList;
