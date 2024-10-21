@@ -1,6 +1,6 @@
-/* Đặt toàn bộ khung chứa bảng */
+/* Khung chứa tổng thể */
 .container {
-    width: 80%;
+    max-width: 1200px;
     margin: 30px auto;
     padding: 20px;
     border: 2px solid #4CAF50;
@@ -12,27 +12,31 @@
   /* Tiêu đề */
   .title {
     text-align: center;
-    font-size: 1.8em;
+    font-size: 2em;
     margin-bottom: 20px;
     color: #333;
+    word-wrap: break-word;
   }
   
   /* Khu vực chứa nút */
   .button-container {
     display: flex;
     justify-content: center;
+    gap: 10px;
     margin-bottom: 15px;
+    flex-wrap: wrap;
   }
   
   /* Nút refresh */
   .refresh-button {
-    padding: 10px 20px;
+    padding: 12px 24px;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 1em;
   }
   
   .refresh-button:hover {
@@ -45,10 +49,15 @@
   }
   
   /* Bảng dữ liệu */
+  .data-table-container {
+    overflow-x: auto; /* Đảm bảo bảng có thể cuộn ngang trên màn hình nhỏ */
+    margin-top: 10px;
+  }
+  
   .data-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    min-width: 600px; /* Đảm bảo bảng không bị co quá nhỏ */
   }
   
   .data-table th,
@@ -77,5 +86,37 @@
     color: red;
     text-align: center;
     margin-top: 10px;
+  }
+  
+  /* Responsive cho màn hình nhỏ */
+  @media (max-width: 768px) {
+    .container {
+      padding: 15px;
+      margin: 10px;
+    }
+  
+    .title {
+      font-size: 1.5em;
+    }
+  
+    .refresh-button {
+      width: 100%; /* Nút trải rộng toàn bộ trên màn hình nhỏ */
+    }
+  
+    .data-table th,
+    .data-table td {
+      font-size: 1em;
+      padding: 8px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .title {
+      font-size: 1.2em;
+    }
+  
+    .data-table {
+      min-width: 400px; /* Đảm bảo bảng không bị co quá nhỏ */
+    }
   }
   
