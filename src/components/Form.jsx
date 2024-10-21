@@ -35,8 +35,8 @@ const initialSchema = {
         'Dây UC 300',
         'Hộp đưng nâng hạ BT500',
         'Jack sự kiện',
-        'Đầu dò BT250'
-      ]
+        'Đầu dò BT250',
+      ],
     },
     action: {
       type: 'string',
@@ -63,7 +63,7 @@ const InventoryForm = () => {
       console.log('Dữ liệu gửi đi:', { ...formData, date: selectedDate });
 
       const response = await axios.post(
-        'https://your-api-endpoint.com/api/inventory',
+        'https://ap-southeast-1.aws.data.mongodb-api.com/app/data-tqlme/endpoint/NHAPXUATHANG',
         { ...formData, date: selectedDate } // Gửi ngày đã chọn
       );
 
@@ -90,11 +90,15 @@ const InventoryForm = () => {
           <label htmlFor="date">Chọn ngày</label>
           <DatePicker
             selected={selectedDate}
-            onChange={date => setSelectedDate(date)}
+            onChange={(date) => setSelectedDate(date)}
             dateFormat="dd/MM/yyyy" // Định dạng ngày
             className="datepicker" // Thêm class cho CSS tùy chỉnh
           />
         </div>
+        {/* Nút Submit */}
+        <button type="submit" className="submit-button">
+          Gửi
+        </button>
       </Form>
     </div>
   );
