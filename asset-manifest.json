@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/QUANLYKHO/static/css/main.18c43a1c.css",
-    "main.js": "/QUANLYKHO/static/js/main.a0e0c279.js",
+    "main.css": "/QUANLYKHO/static/css/main.19ca7ee0.css",
+    "main.js": "/QUANLYKHO/static/js/main.56594a1d.js",
     "static/media/MOHINH3D.glb": "/QUANLYKHO/static/media/MOHINH3D.f4eb62e1a1cbab5e4571.glb",
     "static/media/logotdtu.png": "/QUANLYKHO/static/media/logotdtu.05204e2bd3fe956cc5cb.png",
-    "static/media/benhnhan.jpg": "/QUANLYKHO/static/media/benhnhan.210a18374873e3ac2e3d.jpg",
     "index.html": "/QUANLYKHO/index.html",
-    "main.18c43a1c.css.map": "/QUANLYKHO/static/css/main.18c43a1c.css.map",
-    "main.a0e0c279.js.map": "/QUANLYKHO/static/js/main.a0e0c279.js.map"
+    "main.19ca7ee0.css.map": "/QUANLYKHO/static/css/main.19ca7ee0.css.map",
+    "main.56594a1d.js.map": "/QUANLYKHO/static/js/main.56594a1d.js.map"
   },
   "entrypoints": [
-    "static/css/main.18c43a1c.css",
-    "static/js/main.a0e0c279.js"
+    "static/css/main.19ca7ee0.css",
+    "static/js/main.56594a1d.js"
   ]
 }
