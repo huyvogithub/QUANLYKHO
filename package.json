@@ -1,5 +1,5 @@
 {
-  "homepage": "https://huyvogithub.github.io/App3",
+  "homepage": "https://huyvogithub.github.io/QUANLYKHO",
   "name": "first-react-app",
   "version": "0.1.0",
   "private": true,
@@ -54,6 +54,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.1.0"
+    "gh-pages": "^6.2.0"
   }
 }
