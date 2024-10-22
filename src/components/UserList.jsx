@@ -6,6 +6,9 @@ const UserList = () => {
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [filterType, setFilterType] = useState(''); // Trạng thái cho loại lọc (nhập/xuất)
+  const [searchTerm, setSearchTerm] = useState(''); // Trạng thái cho tên mặt hàng
+  const [suggestions, setSuggestions] = useState([]); // Trạng thái cho gợi ý
 
   const fetchData = async () => {
     try {
@@ -31,6 +34,46 @@ const UserList = () => {
     fetchData();
   };
 
+  const handleFilter = () => {
+    // Có thể tùy chỉnh thêm logic lọc ở đây nếu cần
+  };
+
+  const filteredData = userData.filter(item => {
+    // Lọc theo tên mặt hàng
+    const matchesSearchTerm = item.item.toLowerCase().includes(searchTerm.toLowerCase());
+
+    // Lọc theo loại nhập/xuất nếu có
+    const matchesFilterType = filterType ? item.action === filterType : true;
+
+    return matchesSearchTerm && matchesFilterType;
+  });
+
+  // Tạo gợi ý dựa trên tên mặt hàng
+  const handleSearchTermChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+
+    if (value) {
+      const filteredSuggestions = userData
+        .map(item => item.item)
+        .filter(itemName => itemName.toLowerCase().includes(value.toLowerCase()));
+      setSuggestions(filteredSuggestions);
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setSearchTerm(suggestion);
+    setSuggestions([]); // Ẩn gợi ý sau khi chọn
+  };
+
+  const handleResetFilters = () => {
+    setFilterType('');
+    setSearchTerm('');
+    setSuggestions([]);
+  };
+
   return (
     <div className="container">
       <h2 className="title">DANH SÁCH NHẬP XUẤT HÀNG HÓA</h2>
@@ -38,6 +81,30 @@ const UserList = () => {
         <button onClick={handleRefresh} disabled={loading} className="refresh-button">
           {loading ? 'Refreshing...' : 'Refresh'}
         </button>
+        <button onClick={handleResetFilters} className="reset-button">Bỏ lọc</button> {/* Nút Bỏ lọc */}
+      </div>
+      <div className="filter-container">
+        <select onChange={(e) => setFilterType(e.target.value)} value={filterType}>
+          <option value="">Tất cả</option>
+          <option value="Nhập">Nhập</option>
+          <option value="Xuất">Xuất</option>
+        </select>
+        <input 
+          type="text" 
+          placeholder="Tìm kiếm theo tên mặt hàng" 
+          value={searchTerm} 
+          onChange={handleSearchTermChange} 
+        />
+        {suggestions.length > 0 && (
+          <ul className="suggestions-list">
+            {suggestions.map((suggestion, index) => (
+              <li key={index} onClick={() => handleSuggestionClick(suggestion)}>
+                {suggestion}
+              </li>
+            ))}
+          </ul>
+        )}
+        <button onClick={handleFilter} className="filter-button">Lọc</button>
       </div>
       {error && <p className="error-text">{error}</p>}
       <div className="data-table-container"> {/* Khung cuộn ngang */}
@@ -54,7 +121,7 @@ const UserList = () => {
             </tr>
           </thead>
           <tbody>
-            {userData.map((item, index) => (
+            {filteredData.map((item, index) => (
               <tr key={item._id.$oid}>
                 <td>{index + 1}</td>
                 <td>{item.item}</td>
@@ -70,7 +137,6 @@ const UserList = () => {
       </div>
     </div>
   );
-  
 };
 
 export default UserList;
