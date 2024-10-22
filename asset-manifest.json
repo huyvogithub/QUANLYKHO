@@ -1,15 +1,14 @@
 {
   "files": {
-    "main.css": "/QUANLYKHO/static/css/main.5dd675a7.css",
-    "main.js": "/QUANLYKHO/static/js/main.b33f651f.js",
-    "static/media/MOHINH3D.glb": "/QUANLYKHO/static/media/MOHINH3D.f4eb62e1a1cbab5e4571.glb",
+    "main.css": "/QUANLYKHO/static/css/main.ef89179f.css",
+    "main.js": "/QUANLYKHO/static/js/main.684be56a.js",
     "static/media/logotdtu.png": "/QUANLYKHO/static/media/logotdtu.05204e2bd3fe956cc5cb.png",
     "index.html": "/QUANLYKHO/index.html",
-    "main.5dd675a7.css.map": "/QUANLYKHO/static/css/main.5dd675a7.css.map",
-    "main.b33f651f.js.map": "/QUANLYKHO/static/js/main.b33f651f.js.map"
+    "main.ef89179f.css.map": "/QUANLYKHO/static/css/main.ef89179f.css.map",
+    "main.684be56a.js.map": "/QUANLYKHO/static/js/main.684be56a.js.map"
   },
   "entrypoints": [
-    "static/css/main.5dd675a7.css",
-    "static/js/main.b33f651f.js"
+    "static/css/main.ef89179f.css",
+    "static/js/main.684be56a.js"
   ]
 }
