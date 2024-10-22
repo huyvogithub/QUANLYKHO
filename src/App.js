@@ -19,9 +19,9 @@ function App() {
     setCurrentPage(page);
     setIsMenuOpen(false); // Đóng menu khi chọn một trang
   };
+
   return (
     <div className="App">
-
       <header>
         <div className="menu-icon" onClick={toggleMenu}>
           <div className="menu-line" />
@@ -38,29 +38,24 @@ function App() {
       <main>
         <div className={`form-container ${currentPage === 'form' ? 'visible' : 'hidden'}`}>
           <Form />
-
-
         </div>
         <div className={`user-list-container ${currentPage === 'userList' ? 'visible' : 'hidden'}`}>
-        <UserList />
+          <UserList />
         </div>
         <div className={`chartmongo-container ${currentPage === 'userList2' ? 'visible' : 'hidden'}`}>
-        <Xuatsoluongkho />
+          <Xuatsoluongkho />
         </div>
 
         {currentPage === 'PAGE4' && (
           <div className="user-list-container">
-           <Form />
+            <Form />
           </div>
-        )
-        }
+        )}
         {currentPage === 'CHUNG' && (
           <div className="user-list-container">
-
-<Form />
+            <Form />
           </div>
-        )
-        }
+        )}
       </main>
       <aside className={`side-menu ${isMenuOpen ? 'open' : ''}`}>
         <ul>
@@ -71,6 +66,11 @@ function App() {
           <li onClick={() => handleMenuClick('CHUNG')}>CHƯA LÀM KỊP</li>
         </ul>
       </aside>
+      
+      {/* Thêm footer vào đây */}
+      <footer className="footer">
+        <p>Design by Thanh Huy Võ</p>
+      </footer>
     </div>
   );
 }

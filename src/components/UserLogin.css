@@ -14,7 +14,8 @@
 input[type="text"],
 input[type="password"],
 select,
-textarea {
+textarea,
+input[type="number"] { /* Thêm điều chỉnh cho input[type="number"] */
   width: 100%;
   padding: 15px;
   margin-bottom: 20px;
@@ -43,6 +44,7 @@ button {
 button:hover {
   background-color: #4fa3d1;
 }
+
 .delete-form-container-right {
   margin-left: 20px; /* Điều chỉnh khoảng cách giữa form và nút */
 }
