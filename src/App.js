@@ -3,13 +3,9 @@ import React, { useState } from 'react';
 import './App.css';
 import Form from './components/Form';
 import UserList from './components/UserList';
-import EmbeddedDashboard from './components/EmbeddedDashboard';
-import SmallFrame from './components/SmallFrame';
-import Gauge from './components/Gauge_edit';
-import Search from './components/Search';
-import ThreeJSComponent from './components/ThreeJSComponent';
+import Xuatsoluongkho from './components/Xuatsoluongkho';
 import MyImage from './components/logotdtu.png';
-import TETS from './components/tets';
+
 //import GET from './components/GET';
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,7 +45,7 @@ function App() {
         <UserList />
         </div>
         <div className={`chartmongo-container ${currentPage === 'userList2' ? 'visible' : 'hidden'}`}>
-        <Form />
+        <Xuatsoluongkho />
         </div>
 
         {currentPage === 'PAGE4' && (
