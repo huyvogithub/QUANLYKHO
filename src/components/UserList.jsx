@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import * as XLSX from 'xlsx'; // Import thư viện xuất Excel
 import './UserList.css'; // Import CSS tùy chỉnh
 
 const UserList = () => {
@@ -35,20 +36,15 @@ const UserList = () => {
   };
 
   const handleFilter = () => {
-    // Có thể tùy chỉnh thêm logic lọc ở đây nếu cần
+    // Logic lọc có thể mở rộng tại đây nếu cần
   };
 
-  const filteredData = userData.filter(item => {
-    // Lọc theo tên mặt hàng
-    const matchesSearchTerm = item.item.toLowerCase().includes(searchTerm.toLowerCase());
+  const handleResetFilters = () => {
+    setFilterType('');
+    setSearchTerm('');
+    setSuggestions([]);
+  };
 
-    // Lọc theo loại nhập/xuất nếu có
-    const matchesFilterType = filterType ? item.action === filterType : true;
-
-    return matchesSearchTerm && matchesFilterType;
-  });
-
-  // Tạo gợi ý dựa trên tên mặt hàng
   const handleSearchTermChange = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
@@ -65,13 +61,36 @@ const UserList = () => {
 
   const handleSuggestionClick = (suggestion) => {
     setSearchTerm(suggestion);
-    setSuggestions([]); // Ẩn gợi ý sau khi chọn
+    setSuggestions([]);
   };
 
-  const handleResetFilters = () => {
-    setFilterType('');
-    setSearchTerm('');
-    setSuggestions([]);
+  const filteredData = userData.filter(item => {
+    const matchesSearchTerm = item.item.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesFilterType = filterType ? item.action === filterType : true;
+    return matchesSearchTerm && matchesFilterType;
+  });
+
+  const exportToExcel = () => {
+    const now = new Date();
+    const fileName = `LICHSUNHAPXUAT_${now.getDate()}-${now.getMonth() + 1}-${now.getFullYear()}.xlsx`;
+
+    const excelData = [
+      ['STT', 'Mặt hàng', 'Hành động', 'Số lượng', 'Lý do', 'Người ký', 'Ngày'], // Tiêu đề cột
+      ...filteredData.map((item, index) => [
+        index + 1,
+        item.item,
+        item.action,
+        item.quantity,
+        item.reason,
+        item.signer,
+        new Date(item.date).toLocaleString('vi-VN'),
+      ])
+    ];
+
+    const worksheet = XLSX.utils.aoa_to_sheet(excelData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'LichSuNhapXuat');
+    XLSX.writeFile(workbook, fileName);
   };
 
   return (
@@ -81,7 +100,12 @@ const UserList = () => {
         <button onClick={handleRefresh} disabled={loading} className="refresh-button">
           {loading ? 'Refreshing...' : 'Refresh'}
         </button>
-        <button onClick={handleResetFilters} className="reset-button">Bỏ lọc</button> {/* Nút Bỏ lọc */}
+        <button onClick={handleResetFilters} className="reset-button">
+          Bỏ lọc
+        </button>
+        <button onClick={exportToExcel} className="export-button">
+          Xuất Excel
+        </button>
       </div>
       <div className="filter-container">
         <select onChange={(e) => setFilterType(e.target.value)} value={filterType}>
@@ -89,11 +113,11 @@ const UserList = () => {
           <option value="Nhập">Nhập</option>
           <option value="Xuất">Xuất</option>
         </select>
-        <input 
-          type="text" 
-          placeholder="Tìm kiếm theo tên mặt hàng" 
-          value={searchTerm} 
-          onChange={handleSearchTermChange} 
+        <input
+          type="text"
+          placeholder="Tìm kiếm theo tên mặt hàng"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
         />
         {suggestions.length > 0 && (
           <ul className="suggestions-list">
@@ -104,10 +128,12 @@ const UserList = () => {
             ))}
           </ul>
         )}
-        <button onClick={handleFilter} className="filter-button">Lọc</button>
+        <button onClick={handleFilter} className="filter-button">
+          Lọc
+        </button>
       </div>
       {error && <p className="error-text">{error}</p>}
-      <div className="data-table-container"> {/* Khung cuộn ngang */}
+      <div className="data-table-container">
         <table className="data-table">
           <thead>
             <tr>
